@@ -1,0 +1,196 @@
+/* Site footer */
+
+.site-footer {
+  padding: 4.375rem 2.5rem 2rem;
+  background: var(--bg-footer);
+  color: var(--color-muted-on-dark);
+}
+
+.site-footer__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+  gap: 2.75rem;
+}
+
+@media (max-width: 900px) {
+  .site-footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 2.25rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.site-footer__brand-row {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.site-footer__brand-icon {
+  height: 30px;
+  width: 30px;
+}
+
+.site-footer__brand-wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-on-dark);
+  white-space: nowrap;
+}
+
+.site-footer__blurb {
+  margin: 1.125rem 0 0;
+  font-size: var(--text-base-alt);
+  line-height: 1.65;
+  max-width: 20rem;
+}
+
+.footer-col {
+  display: grid;
+  gap: 0.625rem;
+  align-content: start;
+}
+
+.footer-col__title {
+  margin: 0 0 0.3125rem;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-on-dark);
+}
+
+.footer-col a {
+  font-size: var(--text-base-alt);
+  color: var(--color-muted-on-dark);
+}
+
+.footer-col a:hover {
+  color: #9DB1F5;
+}
+
+.site-footer__bottom {
+  margin-top: 3rem;
+  padding-top: 1.375rem;
+  border-top: 1px solid var(--border-dark-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-footer__bottom p {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.site-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.375rem;
+}
+
+.site-footer__legal a {
+  font-size: var(--text-sm);
+  color: var(--color-muted-on-dark);
+}
+
+.site-footer__consent {
+  padding: 0;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--color-muted-on-dark);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.site-footer__consent[hidden] {
+  display: none;
+}
+
+.site-footer__consent:hover,
+.site-footer__legal a:hover {
+  color: #9DB1F5;
+}
+
+/* ---------- Roadhouse Rats footer ---------- */
+
+.band-footer {
+  border-top: 1px solid var(--border-dark-soft);
+  padding-block: var(--space-16) var(--space-8);
+  text-align: center;
+}
+
+.band-footer__inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-6);
+}
+
+.band-footer__logo img {
+  width: auto;
+  height: 7rem;
+}
+
+.band-footer__tagline {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  color: var(--color-ink-on-dark);
+}
+
+.band-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-8);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+.band-footer__links a,
+.band-footer__legal a {
+  color: var(--color-body-on-dark);
+}
+
+.band-footer__links a:hover,
+.band-footer__legal a:hover {
+  color: var(--color-white);
+}
+
+.band-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: 100%;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-dark-soft);
+  font-size: var(--text-md);
+  color: var(--color-muted-on-dark);
+}
+
+.band-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+@media (max-width: 720px) {
+  .band-footer__bottom {
+    justify-content: center;
+  }
+}

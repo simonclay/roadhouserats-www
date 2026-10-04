@@ -1,0 +1,280 @@
+/*
+  Styles for Sveltia CMS's preview pane (the right-hand column in the editor).
+
+  Registered in admin/index.html alongside the site's own tokens.css, so the
+  preview uses the real brand fonts, colours and type scale. Once any preview
+  style is registered, Sveltia renders the preview inside an iframe that loads
+  ONLY the stylesheets registered there, so this file has to style everything
+  in the preview itself, including the CMS's own field labels.
+
+  Sveltia's default preview markup (as of v0.221):
+    body > section[data-field-type][data-key-path]   one per field
+      > h4                                           the field's label
+      > p                                            string/text/image values
+      > div[data-rich-text-preview]                  rendered Markdown body
+      > ul > li                                      simple lists
+      > div.subsection > div.header + div.items      object/list-of-objects
+                                                     (each item nests more sections)
+
+  This is a styled approximation, not the real page layout. The rich text
+  styles mirror .prose in css/pages.css, so keep the two in step.
+*/
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: var(--space-6) var(--space-8) var(--space-16);
+  font-family: var(--font-body);
+  font-size: var(--text-xl-alt);
+  line-height: 1.7;
+  color: var(--color-body);
+  background: var(--bg-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- One block per field ---------- */
+
+section[data-field-type] {
+  max-width: 44rem;
+  margin-inline: auto;
+  padding: var(--space-3) 0;
+  cursor: pointer; /* clicking a block jumps to that field in the editor */
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+section[data-field-type]:hover {
+  background: var(--bg-card-tint);
+  box-shadow: 0 0 0 var(--space-2) var(--bg-card-tint);
+}
+
+section[data-field-type]:focus-visible {
+  outline: 2px solid var(--color-purple);
+  outline-offset: var(--space-2);
+}
+
+/* Field label, styled like the site's eyebrow text so it reads as a tag,
+   not as part of the content. */
+section[data-field-type] > h4 {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-eyebrow);
+}
+
+section[data-field-type] > p {
+  margin: 0;
+}
+
+/* Plain text fields keep the line breaks the editor typed. */
+section[data-field-type='text'] > p {
+  white-space: pre-wrap;
+}
+
+/* Title fields get the site's display heading treatment. */
+section[data-key-path='title'] > p,
+section[data-key-path$='.title'] > p,
+section[data-key-path$='.heading'] > p {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-snug);
+  color: var(--color-ink);
+}
+
+section[data-key-path='title'] > p {
+  font-size: var(--text-h2);
+  letter-spacing: var(--tracking-tighter);
+}
+
+section[data-key-path$='.title'] > p,
+section[data-key-path$='.heading'] > p {
+  font-size: var(--text-5xl);
+}
+
+/* Booleans, dates, numbers and selects are settings, not copy. */
+section:is(
+    [data-field-type='boolean'],
+    [data-field-type='datetime'],
+    [data-field-type='number'],
+    [data-field-type='select'],
+    [data-field-type='relation']
+  )
+  > p {
+  font-size: var(--text-md);
+  color: var(--color-ink-secondary);
+}
+
+/* ---------- Images ---------- */
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  max-height: 32rem;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+
+/* ---------- Links ---------- */
+
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-decoration-color: rgba(59, 91, 219, 0.35);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+/* ---------- Simple lists ---------- */
+
+section[data-field-type] > ul {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+/* ---------- Rich text (mirrors .prose in css/pages.css) ---------- */
+
+[data-rich-text-preview] > * {
+  margin: 0;
+}
+
+[data-rich-text-preview] > * + * {
+  margin-top: 1.25rem;
+}
+
+[data-rich-text-preview] h1,
+[data-rich-text-preview] h2,
+[data-rich-text-preview] h3,
+[data-rich-text-preview] h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-normal);
+  color: var(--color-ink);
+}
+
+[data-rich-text-preview] h1,
+[data-rich-text-preview] h2 {
+  font-size: var(--text-5xl);
+  margin-top: 2.5rem;
+}
+
+[data-rich-text-preview] h3,
+[data-rich-text-preview] h4 {
+  font-size: var(--text-4xl);
+  margin-top: 2rem;
+}
+
+[data-rich-text-preview] > :first-child {
+  margin-top: 0;
+}
+
+[data-rich-text-preview] ul,
+[data-rich-text-preview] ol {
+  display: grid;
+  gap: 0.625rem;
+  padding-left: 1.25rem;
+}
+
+[data-rich-text-preview] ul {
+  list-style: disc;
+}
+
+[data-rich-text-preview] ol {
+  list-style: decimal;
+}
+
+[data-rich-text-preview] li {
+  line-height: 1.62;
+}
+
+[data-rich-text-preview] strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+[data-rich-text-preview] blockquote {
+  margin-inline: 0;
+  padding: 1.5rem 1.75rem;
+  border-left: 3px solid var(--color-pink);
+  background: var(--bg-card-tint);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  font-size: var(--text-2xl);
+  line-height: 1.55;
+  color: var(--color-ink-secondary);
+}
+
+[data-rich-text-preview] blockquote p {
+  margin: 0;
+}
+
+/* ---------- Groups and repeating items (cards, stats, FAQs, etc.) ---------- */
+
+.subsection {
+  margin: var(--space-4) 0;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  background: var(--bg-white);
+  overflow: hidden;
+}
+
+.subsection > .header {
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg-lilac);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-ink-secondary);
+}
+
+.subsection > .items {
+  padding: var(--space-2) var(--space-5);
+}
+
+.subsection > .items:empty {
+  display: none;
+}
+
+/* Fields nested inside a group sit tighter and use the card-size headings. */
+.subsection section[data-field-type] {
+  padding: var(--space-2) 0;
+}
+
+.subsection section[data-field-type]:hover {
+  box-shadow: none;
+}
+
+/* YouTube embeds */
+iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: var(--radius-lg);
+}
+
+@media (max-width: 720px) {
+  body {
+    padding: var(--space-4) var(--space-5) var(--space-12);
+  }
+
+  section[data-key-path='title'] > p {
+    font-size: var(--text-6xl);
+  }
+}

@@ -1,0 +1,60 @@
+/* Header: Gigs · logo · Songs, fixed over the top of the page. */
+
+.band-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+  transition: background var(--transition-base);
+}
+
+.band-header.is-scrolled {
+  background: rgba(0, 0, 0, 0.92);
+  border-bottom: 1px solid var(--border-dark-soft);
+}
+
+.band-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-12);
+  padding: var(--space-2) var(--section-padding-x);
+}
+
+.band-nav__link {
+  font-size: var(--text-xl-alt);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-ink-on-dark);
+}
+
+.band-nav__link::before {
+  content: '';
+  display: inline-block;
+  width: 0.55em;
+  height: 0.9em;
+  margin-right: var(--space-2);
+  vertical-align: -0.05em;
+  background: var(--color-pink);
+  mask: url('/assets/icons/bolt.svg') center / contain no-repeat;
+}
+
+.band-nav__link:hover {
+  color: var(--color-white);
+}
+
+.band-nav__logo img {
+  width: auto;
+  height: 4.5rem;
+}
+
+@media (max-width: 480px) {
+  .band-nav {
+    gap: var(--space-6);
+  }
+
+  .band-nav__logo img {
+    height: 3.5rem;
+  }
+}

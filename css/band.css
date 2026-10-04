@@ -1,0 +1,529 @@
+/* Roadhouse Rats: the one-page sections (hero, band, gigs, booking, video
+   and music, repertoire), plus the plain page used for legal pages and 404.
+   Colours, fonts and spacing come from tokens.css. */
+
+body {
+  background: var(--bg-white);
+  color: var(--color-ink);
+  font-size: var(--text-xl-alt);
+  line-height: var(--leading-relaxed);
+}
+
+/* ---------- Shared headings, lists and buttons ---------- */
+
+.band-eyebrow {
+  margin-bottom: var(--space-1);
+  font-size: var(--text-xl-alt);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-eyebrow);
+}
+
+.band-title {
+  margin-bottom: var(--space-8);
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, var(--text-h1));
+  font-weight: 400;
+  line-height: var(--leading-snug);
+  color: var(--color-ink-on-dark);
+}
+
+.band-subtitle {
+  margin-block: var(--space-10) var(--space-5);
+  font-family: var(--font-display);
+  font-size: var(--text-h2-sm);
+  font-weight: 400;
+  line-height: var(--leading-snug);
+  color: var(--color-ink-on-dark);
+}
+
+.band-bolt-list li {
+  position: relative;
+  padding: var(--space-2) 0 var(--space-2) var(--space-8);
+}
+
+.band-bolt-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.9em;
+  width: 0.7em;
+  height: 1.1em;
+  background: var(--color-pink);
+  mask: url('/assets/icons/bolt.svg') center / contain no-repeat;
+}
+
+.band-btn {
+  border-radius: var(--radius-sm);
+  background: var(--color-pink);
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+.band-btn:hover {
+  background: var(--color-purple);
+  color: var(--color-white);
+}
+
+/* ---------- Hero: the logo over two slowly fading photos ---------- */
+
+.band-hero {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: 7rem var(--section-padding-x) var(--space-12);
+  background: var(--bg-hero-dark);
+}
+
+.band-hero__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(1);
+  opacity: 0;
+  animation: band-hero-fade 16s infinite;
+}
+
+/* Darkens the photos so the logo stands out. */
+.band-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.85) 75%);
+  pointer-events: none;
+}
+
+.band-hero__bg:nth-of-type(2) { animation-delay: 8s; }
+.band-hero__bg:only-of-type { animation: none; opacity: 1; }
+
+@keyframes band-hero-fade {
+  0%, 100% { opacity: 0; }
+  8%, 50% { opacity: 1; }
+  58% { opacity: 0; }
+}
+
+.band-hero__logo {
+  position: relative;
+  z-index: 1;
+  width: min(34rem, 80vw);
+  aspect-ratio: 1000 / 1458;
+  max-height: 75svh;
+}
+
+.band-hero__logo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: band-glitch 4s infinite;
+}
+
+.band-hero__glitch {
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+
+.band-hero__glitch--1 { animation: band-glitch-1 3s infinite; }
+.band-hero__glitch--2 { animation: band-glitch-2 2.5s infinite; }
+
+@keyframes band-glitch {
+  0%, 90%, 100% { transform: translate(0); }
+  91% { transform: translate(-2px, 2px); }
+  92% { transform: translate(2px, -2px); }
+  93% { transform: translate(-2px, 2px); }
+  94% { transform: translate(0); }
+}
+
+@keyframes band-glitch-1 {
+  0%, 80%, 100% { opacity: 0; transform: translate(0); }
+  81% { opacity: 0.7; transform: translate(-5px, 0); filter: hue-rotate(90deg); }
+  82% { opacity: 0.5; transform: translate(5px, 0); }
+  83% { opacity: 0; transform: translate(0); }
+}
+
+@keyframes band-glitch-2 {
+  0%, 85%, 100% { opacity: 0; transform: translate(0); }
+  86% { opacity: 0.6; transform: translate(3px, -3px); filter: hue-rotate(180deg); }
+  87% { opacity: 0.4; transform: translate(-3px, 3px); }
+  88% { opacity: 0; transform: translate(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .band-hero__bg,
+  .band-hero__logo-img,
+  .band-hero__glitch { animation: none; }
+  .band-hero__bg:first-of-type { opacity: 1; }
+  .band-hero__glitch { display: none; }
+}
+
+/* ---------- About and the band ---------- */
+
+.band-about {
+  background: linear-gradient(to bottom, var(--bg-white), var(--bg-contact-2) 50%, var(--bg-white));
+}
+
+.band-about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-20);
+  align-items: start;
+}
+
+.band-about__body p + p {
+  margin-top: var(--space-5);
+}
+
+.band-about__body {
+  color: var(--color-body-on-dark);
+}
+
+.band-members {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: var(--space-5);
+}
+
+.band-member {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.band-member__photo {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(1);
+  border: 2px solid var(--border-pill);
+}
+
+.band-member__name {
+  font-weight: 700;
+  line-height: var(--leading-normal);
+  color: var(--color-ink-on-dark);
+}
+
+.band-member__role {
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  color: var(--color-eyebrow);
+}
+
+.band-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.band-photo:first-child {
+  grid-column: 1 / -1;
+}
+
+.band-photo {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.band-photo img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out-soft);
+}
+
+.band-photo:first-child img {
+  aspect-ratio: 16 / 10;
+}
+
+.band-photo:hover img {
+  transform: scale(1.04);
+}
+
+.band-photo figcaption {
+  position: absolute;
+  inset: auto 0 0;
+  padding: var(--space-6) var(--space-4) var(--space-3);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  font-size: var(--text-md);
+  color: var(--color-ink-on-dark);
+}
+
+@media (max-width: 1080px) {
+  .band-about__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+}
+
+/* ---------- Gigs ---------- */
+
+.band-gigs__head,
+.band-gig {
+  display: grid;
+  grid-template-columns: 1.2fr 1.6fr 1.6fr 0.8fr;
+  gap: var(--space-4);
+}
+
+.band-gigs__head {
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-dark);
+  font-size: var(--text-md);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-eyebrow);
+}
+
+.band-gigs__year-title {
+  margin-block: var(--space-10) var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--text-h2-sm);
+  font-weight: 400;
+  color: var(--color-eyebrow);
+}
+
+.band-gig {
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--border-dark-soft);
+  transition: background var(--transition-fast);
+}
+
+.band-gig:hover {
+  background: var(--bg-card-tint);
+}
+
+.band-gig__venue {
+  font-weight: 700;
+  color: var(--color-ink-on-dark);
+}
+
+.band-gig__location,
+.band-gig__time {
+  color: var(--color-body-on-dark);
+}
+
+.band-gigs__empty {
+  color: var(--color-body-on-dark);
+}
+
+@media (max-width: 720px) {
+  .band-gigs__head {
+    display: none;
+  }
+
+  .band-gig {
+    grid-template-columns: 1fr auto;
+    gap: 0 var(--space-4);
+  }
+
+  .band-gig__date { font-weight: 700; color: var(--color-ink-on-dark); }
+  .band-gig__time { text-align: right; }
+  .band-gig__venue { grid-column: 1; font-weight: 400; color: var(--color-body-on-dark); }
+  .band-gig__location { grid-column: 1; }
+}
+
+/* ---------- Private bookings ---------- */
+
+.band-booking__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+.band-booking__grid > div > p {
+  margin-bottom: var(--space-5);
+  color: var(--color-body-on-dark);
+}
+
+.band-booking__image {
+  width: 100%;
+  margin-bottom: var(--space-8);
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.band-booking .band-subtitle {
+  margin-top: 0;
+}
+
+.band-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+.band-form__field {
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--text-md);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-body-on-dark);
+}
+
+.band-form__field--wide {
+  grid-column: 1 / -1;
+}
+
+.band-form input,
+.band-form select,
+.band-form textarea {
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--border-pill);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-tint);
+  color: var(--color-ink-on-dark);
+  font: inherit;
+  font-size: var(--text-xl-alt);
+  text-transform: none;
+  letter-spacing: normal;
+  color-scheme: dark;
+}
+
+.band-form input:focus,
+.band-form select:focus,
+.band-form textarea:focus {
+  outline: 2px solid var(--color-pink);
+  outline-offset: 1px;
+}
+
+/* Spam trap: hidden from people, filled in by bots. */
+.band-form__trap {
+  position: absolute;
+  left: -9999px;
+}
+
+.band-form .band-btn {
+  justify-self: start;
+}
+
+@media (max-width: 1080px) {
+  .band-booking__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+}
+
+@media (max-width: 480px) {
+  .band-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Video and music ---------- */
+
+.band-media .band-subtitle:first-of-type {
+  margin-top: 0;
+}
+
+.band-videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: var(--space-8);
+}
+
+.band-video {
+  margin: 0;
+}
+
+.band-video__play,
+.band-video__frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: var(--radius-sm);
+}
+
+.band-video__play {
+  position: relative;
+  background: var(--bg-card-tint) center / cover no-repeat;
+  cursor: pointer;
+}
+
+.band-video__play::after {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 4rem;
+  height: 4rem;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: var(--color-pink)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='white'/%3E%3C/svg%3E")
+    center / 55% no-repeat;
+  transition: scale var(--transition-fast);
+}
+
+.band-video__play:hover::after {
+  scale: 1.1;
+}
+
+.band-video figcaption {
+  margin-top: var(--space-2);
+  color: var(--color-body-on-dark);
+}
+
+.band-tracks {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 32rem;
+}
+
+.band-track__title {
+  margin-bottom: var(--space-2);
+  color: var(--color-ink-on-dark);
+}
+
+.band-tracks audio {
+  width: 100%;
+}
+
+/* ---------- Repertoire ---------- */
+
+.band-songs__intro {
+  margin-bottom: var(--space-8);
+  color: var(--color-body-on-dark);
+}
+
+.band-songs__list {
+  columns: 3 16rem;
+  column-gap: var(--space-12);
+}
+
+.band-songs__list li {
+  break-inside: avoid;
+  border-bottom: 1px solid var(--border-dark-soft);
+  color: var(--color-ink-on-dark);
+}
+
+/* ---------- Plain pages (legal, 404) ---------- */
+
+.band-page {
+  padding-top: 9rem;
+}
+
+.band-page__inner {
+  max-width: 48rem;
+}
+
+.band-page .prose {
+  color: var(--color-body-on-dark);
+}
+
+.band-page .prose h2,
+.band-page .prose h3,
+.band-page .prose strong {
+  color: var(--color-ink-on-dark);
+}

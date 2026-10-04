@@ -1,0 +1,159 @@
+# Sveltia CMS config: the content types editors see and the fields in each
+# form. Field names must match src/schemas.ts. See README.md.
+
+backend:
+  name: github
+  repo: simonclay/roadhouserats-source # Set per site: the site's private source repo
+  branch: main
+  # base_url: https://YOUR-AUTHENTICATOR.workers.dev  # only needed for real (non-local) GitHub login
+
+media_folder: public/assets/images/uploads
+public_folder: /assets/images/uploads
+
+collections:
+  - name: pages
+    label: Pages
+    icon: description
+    files:
+      - name: home
+        label: Homepage
+        file: src/content/pages/home.json
+        fields:
+          - { name: metaDescription, label: "Meta description (for search engines)", widget: text }
+          - name: heroImages
+            label: "Top of page: background photos"
+            label_singular: photo
+            widget: list
+            hint: "Shown in black and white behind the logo, fading from one to the next. Two works best."
+            fields:
+              - { name: image, label: Photo, widget: image }
+
+          - { name: aboutEyebrow, label: "Band: small label", widget: string }
+          - { name: aboutTitle, label: "Band: heading", widget: string }
+          - { name: aboutBody, label: "Band: intro (leave a blank line between paragraphs)", widget: text }
+          - { name: membersTitle, label: "Band members: heading", widget: string }
+          - name: members
+            label: "Band members"
+            label_singular: member
+            widget: list
+            summary: "{{name}} ({{role}})"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: role, label: "Instrument", widget: string }
+              - { name: photo, label: "Photo (square)", widget: image }
+          - name: photos
+            label: "Band photos"
+            label_singular: photo
+            widget: list
+            summary: "{{caption}}"
+            hint: "The first photo is shown large, the rest in pairs underneath."
+            fields:
+              - { name: image, label: Photo, widget: image }
+              - { name: caption, label: Caption, widget: string, required: false }
+
+          - { name: showGigs, label: "Gigs: show this section", widget: boolean, default: true }
+          - { name: gigsEyebrow, label: "Gigs: small label", widget: string }
+          - { name: gigsTitle, label: "Gigs: heading", widget: string }
+          - name: gigs
+            label: "Gigs"
+            label_singular: gig
+            widget: list
+            summary: "{{date}}: {{venue}}"
+            hint: "Gigs sort themselves by date and drop off the website the day after they happen."
+            fields:
+              - { name: date, label: Date, widget: datetime, time_format: false, format: "YYYY-MM-DD" }
+              - { name: venue, label: Venue, widget: string, default: "The Dashwood Roadhouse" }
+              - { name: location, label: "Town or village", widget: string, default: "Piddington" }
+              - { name: time, label: "Start time", widget: string, default: "9:00 pm", required: false }
+          - { name: gigsEmpty, label: "Gigs: message when there are none coming up", widget: string }
+
+          - { name: showBooking, label: "Booking: show this section", widget: boolean, default: true }
+          - { name: bookingTitle, label: "Booking: heading", widget: string }
+          - { name: bookingImage, label: "Booking: photo", widget: image, required: false }
+          - { name: bookingIntro, label: "Booking: intro", widget: text }
+          - { name: bookingListIntro, label: "Booking: line above the list", widget: string }
+          - name: bookingList
+            label: "Booking: what we bring"
+            label_singular: item
+            widget: list
+            field: { name: item, label: Item, widget: string }
+          - { name: bookingFormTitle, label: "Booking form: heading", widget: string }
+          - { name: bookingFormAction, label: "Booking form: Formspree address", widget: string, required: false, hint: "e.g. https://formspree.io/f/abcdwxyz. Enquiries are emailed to whoever owns the Formspree form. Leave empty to hide the form." }
+          - name: eventTypes
+            label: "Booking form: event types"
+            label_singular: event type
+            widget: list
+            field: { name: type, label: "Event type", widget: string }
+
+          - { name: showMedia, label: "Video & Music: show this section", widget: boolean, default: true, hint: "The section also stays hidden until it has at least one video or track." }
+          - { name: mediaTitle, label: "Video & Music: heading", widget: string }
+          - { name: videosTitle, label: "Videos: heading", widget: string }
+          - name: videos
+            label: "Videos"
+            label_singular: video
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { name: url, label: "YouTube link", widget: string, hint: "Paste the link from YouTube's Share button" }
+              - { name: title, label: "Title", widget: string }
+          - { name: listenTitle, label: "Tracks: heading", widget: string }
+          - name: tracks
+            label: "Tracks"
+            label_singular: track
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: file, label: "Audio file (MP3)", widget: file }
+
+          - { name: showRepertoire, label: "Repertoire: show this section", widget: boolean, default: true }
+          - { name: repertoireEyebrow, label: "Repertoire: small label", widget: string }
+          - { name: repertoireTitle, label: "Repertoire: heading", widget: string }
+          - { name: repertoireIntro, label: "Repertoire: intro", widget: text }
+          - name: songs
+            label: "Songs"
+            label_singular: song
+            widget: list
+            field: { name: song, label: Song, widget: string }
+
+  - name: legal
+    label: Legal
+    icon: gavel
+    label_singular: Legal page
+    folder: src/content/legal
+    create: true
+    format: frontmatter
+    extension: md
+    # Editable: the pencil next to the title renames the page's web address.
+    # Once a site is live, changing it breaks links to the old address.
+    slug:
+      template: "{{slug}}"
+      editable: true
+    reorder: true
+    fields:
+      - { name: title, label: Title, widget: string, hint: "Also used as the footer link text" }
+      - { name: metaDescription, label: "Meta description (for search engines)", widget: text }
+      - { name: body, label: "Policy text", widget: markdown }
+
+  - name: settings
+    label: Site settings
+    icon: settings
+    files:
+      - name: site
+        label: Site settings
+        file: src/content/settings/site.json
+        fields:
+          - name: footerScripts
+            label: "Footer scripts"
+            label_singular: "script"
+            widget: list
+            required: false
+            summary: "{{name}}"
+            hint: "Extra code that runs on every page of the website, such as a feedback widget, live chat or a marketing tracking code. Only paste code from services you trust. For Google Analytics, use the Google Analytics ID field below instead."
+            fields:
+              - { name: name, label: "Name (for your reference)", widget: string }
+              - { name: code, label: "Code", widget: code, default_language: html, output_code_only: true, allow_language_selection: false }
+              - { name: enabled, label: "Switched on", widget: boolean, default: false }
+              - { name: needsConsent, label: "Only load after cookie consent", widget: boolean, default: true, hint: "Leave on for anything that tracks visitors (analytics, ads, heatmaps, chat widgets that set cookies). Turn off only for scripts that set no cookies." }
+          - { name: analyticsId, label: "Google Analytics ID", widget: string, required: false, hint: "e.g. G-ABC123XYZ. Leave empty to turn off analytics and the cookie banner. Analytics only records visits on the live domain, and only after a visitor accepts cookies." }
+          - { name: cookieBannerText, label: "Cookie banner text", widget: text, required: false, hint: "Shown with Accept / Reject buttons and a link to the cookie policy." }

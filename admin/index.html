@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Content Manager</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+  </head>
+  <body>
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <!--
+      Give the editor's preview pane the site's fonts, colours and type scale.
+      Order matters: design tokens first, then the preview's own styles.
+      See preview.css for what this does and doesn't cover.
+    -->
+    <script>
+      CMS.registerPreviewStyle('/css/tokens.css');
+      CMS.registerPreviewStyle('/admin/preview.css');
+    </script>
+    <!-- Live previews: real pages rendered by the Astro site. See the file for details. -->
+    <script src="/admin/preview-templates.js"></script>
+  </body>
+</html>
