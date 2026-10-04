@@ -1,2 +1,48 @@
-<!DOCTYPE html><html lang="en-GB"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Terms of Use | Roadhouse Rats</title><meta name="description" content="The terms that apply when you use this website."><meta name="theme-color" content="#000000"><link rel="icon" type="image/png" href="/assets/icons/favicon.png"><link rel="apple-touch-icon" href="/assets/icons/favicon.png"><link rel="preload" href="/assets/fonts/metal-mania-v23-latin-regular.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/css/fonts.css"><link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/components.css"><link rel="stylesheet" href="/css/header.css"><link rel="stylesheet" href="/css/pages.css"><link rel="stylesheet" href="/css/band.css"><link rel="stylesheet" href="/css/footer.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header band-header" data-site-header><nav class="band-nav" aria-label="Primary"><a class="band-nav__link" href="/#gigs">Gigs</a><a class="band-nav__logo" href="/" aria-label="Roadhouse Rats home"><img src="/assets/images/roadhouse-rats-trans-white.webp" alt="" width="1000" height="1458"></a><a class="band-nav__link" href="/#songs">Songs</a></nav></header><main id="main"><section class="section band-page"><div class="container band-page__inner"><p class="band-eyebrow">Legal</p><h1 class="band-title">Terms of Use</h1><div class="prose"><p><strong>Placeholder: paste the Terms of Use text here.</strong></p>
+<!DOCTYPE html><html lang="en-GB"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Terms of Use | Roadhouse Rats</title><meta name="description" content="The terms that apply when you use this website."><meta name="theme-color" content="#000000"><meta name="robots" content="noindex, nofollow"><style>
+    html.gate-locked body > :not(.gate) { display: none !important; }
+    .gate { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 1.25rem; background: #000; color: #dedede; font-family: 'Barlow Condensed', sans-serif; }
+    .gate form { display: grid; gap: 1rem; width: min(20rem, 100%); text-align: center; }
+    .gate img { width: 8rem; margin: 0 auto; }
+    .gate input { padding: 0.75rem; border: 1px solid #3a3a3a; border-radius: 5px; background: #111; color: #dedede; font: inherit; font-size: 1.125rem; }
+    .gate button { padding: 0.75rem; border: 0; border-radius: 5px; background: #af0000; color: #fff; font: inherit; font-size: 1.125rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; }
+    .gate p[hidden] { display: none; }
+  </style><script>(function(){const hash = "152b83c1fecdfab8aa7aa712f169b06a330e0e102cf75ea3f9c67b5241dc3e3b";
+
+    (function () {
+      var KEY = 'rr-staging-unlocked';
+      try { if (localStorage.getItem(KEY) === hash) return; } catch (e) {}
+      document.documentElement.classList.add('gate-locked');
+
+      async function sha256(text) {
+        var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+        return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var gate = document.createElement('div');
+        gate.className = 'gate';
+        gate.innerHTML =
+          '<form>' +
+          '<img src="/assets/images/roadhouse-rats-trans-white.webp" alt="Roadhouse Rats">' +
+          '<label for="gate-pw">This site is in preview. Please enter the password.</label>' +
+          '<input id="gate-pw" type="password" autocomplete="current-password" required autofocus>' +
+          '<button type="submit">Enter</button>' +
+          '<p role="alert" hidden>That password isn’t right. Try again.</p>' +
+          '</form>';
+        document.body.appendChild(gate);
+        var form = gate.querySelector('form');
+        form.addEventListener('submit', async function (event) {
+          event.preventDefault();
+          var entered = await sha256(form.querySelector('input').value);
+          if (entered === hash) {
+            try { localStorage.setItem(KEY, hash); } catch (e) {}
+            gate.remove();
+            document.documentElement.classList.remove('gate-locked');
+          } else {
+            form.querySelector('p').hidden = false;
+          }
+        });
+      });
+    })();
+  })();</script><link rel="icon" type="image/png" href="/assets/icons/favicon.png"><link rel="apple-touch-icon" href="/assets/icons/favicon.png"><link rel="preload" href="/assets/fonts/metal-mania-v23-latin-regular.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/css/fonts.css"><link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/components.css"><link rel="stylesheet" href="/css/header.css"><link rel="stylesheet" href="/css/pages.css"><link rel="stylesheet" href="/css/band.css"><link rel="stylesheet" href="/css/footer.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header band-header" data-site-header><nav class="band-nav" aria-label="Primary"><a class="band-nav__link" href="/#gigs">Gigs</a><a class="band-nav__logo" href="/" aria-label="Roadhouse Rats home"><img src="/assets/images/roadhouse-rats-trans-white.webp" alt="" width="1000" height="1458"></a><a class="band-nav__link" href="/#songs">Songs</a></nav></header><main id="main"><section class="section band-page"><div class="container band-page__inner"><p class="band-eyebrow">Legal</p><h1 class="band-title">Terms of Use</h1><div class="prose"><p><strong>Placeholder: paste the Terms of Use text here.</strong></p>
 </div></div></section></main><footer class="site-footer band-footer"><div class="container band-footer__inner"><a href="/" class="band-footer__logo" aria-label="Roadhouse Rats home"><img src="/assets/images/roadhouse-rats-trans-white.webp" alt="" width="1000" height="1458" loading="lazy"></a><p class="band-footer__tagline">Classic rock covers band</p><nav class="band-footer__links" aria-label="Footer"><a href="/#gigs">Gigs</a><a href="/#book">Book us</a><a href="/#songs">Songs</a></nav><div class="band-footer__bottom"><p>© 2026 Roadhouse Rats</p><div class="band-footer__legal"><a href="/privacy-policy/">Privacy Policy</a><a href="/cookies/">Cookie Policy</a><a href="/terms-of-use/">Terms of Use</a><button type="button" class="site-footer__consent" data-consent-open hidden>Cookie settings</button></div></div></div></footer><script type="module" src="/js/main.js"></script></body></html>
