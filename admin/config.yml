@@ -5,7 +5,7 @@ backend:
   name: github
   repo: simonclay/roadhouserats-source # Set per site: the site's private source repo
   branch: main
-  # base_url: https://YOUR-AUTHENTICATOR.workers.dev  # only needed for real (non-local) GitHub login
+  base_url: https://sveltia-cms-auth.cms-tools.workers.dev # GitHub login helper (Cloudflare Worker, shared by all sites)
 
 media_folder: public/assets/images/uploads
 public_folder: /assets/images/uploads
