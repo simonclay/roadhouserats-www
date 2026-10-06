@@ -189,6 +189,12 @@
   gap: var(--space-6);
 }
 
+.band-footer__trademark {
+  margin-top: calc(var(--space-2) * -1);
+  font-size: var(--text-md);
+  color: var(--color-muted-on-dark);
+}
+
 @media (max-width: 720px) {
   .band-footer__bottom {
     justify-content: center;
