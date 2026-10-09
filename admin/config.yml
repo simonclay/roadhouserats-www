@@ -10,6 +10,20 @@ backend:
 media_folder: public/assets/images/uploads
 public_folder: /assets/images/uploads
 
+# Uploaded photos are converted to WebP and capped at 1920px, and file names
+# are cleaned up (no spaces), so a straight-from-camera or stock image doesn't
+# add megabytes to every page.
+media_libraries:
+  default:
+    config:
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          width: 1920
+          height: 1920
+
 collections:
   - name: pages
     label: Pages
