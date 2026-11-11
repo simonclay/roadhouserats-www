@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="en-GB"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Privacy and Cookies | Roadhouse Rats</title><meta name="description" content="How the Roadhouse Rats website handles your information and uses cookies."><link rel="canonical" href="https://roadhouserats.co.uk/privacy/"><meta property="og:type" content="website"><meta property="og:site_name" content="Roadhouse Rats"><meta property="og:title" content="Privacy and Cookies | Roadhouse Rats"><meta property="og:description" content="How the Roadhouse Rats website handles your information and uses cookies."><meta property="og:url" content="https://roadhouserats.co.uk/privacy/"><meta property="og:image" content="https://roadhouserats.co.uk/assets/images/uploads/share-logo.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#000000"><meta name="robots" content="noindex, nofollow"><style>
+    html.gate-locked body > :not(.gate) { display: none !important; }
+    .gate { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 1.25rem; background: #000; color: #dedede; font-family: 'Barlow Condensed', sans-serif; }
+    .gate form { display: grid; gap: 1rem; width: min(20rem, 100%); text-align: center; }
+    .gate img { width: 8rem; margin: 0 auto; }
+    .gate input { padding: 0.75rem; border: 1px solid #3a3a3a; border-radius: 5px; background: #111; color: #dedede; font: inherit; font-size: 1.125rem; }
+    .gate button { padding: 0.75rem; border: 0; border-radius: 5px; background: #af0000; color: #fff; font: inherit; font-size: 1.125rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; }
+    .gate p[hidden] { display: none; }
+  </style><script>(function(){const hash = "152b83c1fecdfab8aa7aa712f169b06a330e0e102cf75ea3f9c67b5241dc3e3b";
+
+    (function () {
+      var KEY = 'rr-staging-unlocked';
+      try { if (localStorage.getItem(KEY) === hash) return; } catch (e) {}
+      document.documentElement.classList.add('gate-locked');
+
+      async function sha256(text) {
+        var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+        return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var gate = document.createElement('div');
+        gate.className = 'gate';
+        gate.innerHTML =
+          '<form>' +
+          '<img src="/assets/images/roadhouse-rats-trans-white.webp" alt="Roadhouse Rats">' +
+          '<label for="gate-pw">This site is in preview. Please enter the password.</label>' +
+          '<input id="gate-pw" type="password" autocomplete="current-password" required autofocus>' +
+          '<button type="submit">Enter</button>' +
+          '<p role="alert" hidden>That password isn’t right. Try again.</p>' +
+          '</form>';
+        document.body.appendChild(gate);
+        var form = gate.querySelector('form');
+        form.addEventListener('submit', async function (event) {
+          event.preventDefault();
+          var entered = await sha256(form.querySelector('input').value);
+          if (entered === hash) {
+            try { localStorage.setItem(KEY, hash); } catch (e) {}
+            gate.remove();
+            document.documentElement.classList.remove('gate-locked');
+          } else {
+            form.querySelector('p').hidden = false;
+          }
+        });
+      });
+    })();
+  })();</script><link rel="icon" type="image/png" href="/assets/icons/favicon.png"><link rel="apple-touch-icon" href="/assets/icons/favicon.png"><link rel="preload" href="/assets/fonts/metal-mania-v23-latin-regular.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/css/fonts.css"><link rel="stylesheet" href="/css/tokens.css"><link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/components.css"><link rel="stylesheet" href="/css/header.css"><link rel="stylesheet" href="/css/pages.css"><link rel="stylesheet" href="/css/band.css"><link rel="stylesheet" href="/css/footer.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header band-header" data-site-header><nav class="band-nav" aria-label="Primary"><a class="band-nav__link" href="/#gigs">Gigs</a><a class="band-nav__logo" href="/" aria-label="Roadhouse Rats home"><img src="/assets/images/roadhouse-rats-trans-white.webp" alt="" width="1000" height="1458"></a><a class="band-nav__link" href="/#songs">Songs</a></nav></header><main id="main"><section class="section band-page"><div class="container band-page__inner"><p class="band-eyebrow">Legal</p><h1 class="band-title">Privacy and Cookies</h1><div class="prose"><p>This page explains what information the Roadhouse Rats website collects, what we do with it, and how cookies are used. We’re a small band, so we keep it simple: we only collect what we need to answer your enquiry.</p>
+<h2 id="who-we-are">Who we are</h2>
+<p>Roadhouse Rats is a classic rock covers band based at The Dashwood Roadhouse, Piddington. If you have any questions about this page or your information, email us at <strong>[email address]</strong>.</p>
+<h2 id="booking-enquiries">Booking enquiries</h2>
+<p>If you use the booking form, we receive the details you enter: your name, email address, phone number (if you give it), the type of event, the date and times, and anything you tell us about the event.</p>
+<p>We use these details only to reply to you and arrange the gig. We don’t add you to a mailing list, and we never sell or share your details with anyone else.</p>
+<p>The form is run by <strong>Formspree</strong>, a service that passes your enquiry on to us by email. Formspree is based in the USA and handles your details on our behalf, with safeguards in place for transfers from the UK. You can read <a href="https://formspree.io/legal/privacy-policy/">Formspree’s privacy policy</a>.</p>
+<p>We delete enquiries once we no longer need them, and normally within 12 months, unless you’ve booked us and we need to keep a record of the booking.</p>
+<h2 id="cookies">Cookies</h2>
+<p>Cookies are small files a website saves on your device. <strong>This website doesn’t set any cookies of its own</strong>, and it doesn’t use analytics or advertising trackers, so you won’t see a cookie banner.</p>
+<h3 id="videos">Videos</h3>
+<p>Our live videos are hosted on <strong>YouTube</strong>. Nothing is loaded from YouTube until you press play on a video. When you do, the video plays from YouTube’s privacy-enhanced service (youtube-nocookie.com), but YouTube may still store some information on your device and receive your IP address. See <a href="https://policies.google.com/privacy">Google’s privacy policy</a>.</p>
+<h3 id="managing-cookies">Managing cookies</h3>
+<p>You can block or delete cookies in your browser settings. For help, visit <a href="https://www.aboutcookies.org">aboutcookies.org</a>.</p>
+<h2 id="website-hosting">Website hosting</h2>
+<p>This website is hosted by <strong>GitHub Pages</strong>. Like most web hosts, GitHub records the IP address of visitors for security purposes. See <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub’s privacy statement</a>.</p>
+<h2 id="your-rights">Your rights</h2>
+<p>You can ask us at any time for a copy of the information we hold about you, or ask us to correct or delete it. Just email us at the address above.</p>
+<p>If you’re unhappy with how we’ve handled your information, you can complain to the Information Commissioner’s Office at <a href="https://ico.org.uk">ico.org.uk</a>.</p>
+<p><em>Last updated: 11 November 2026</em></p>
+</div></div></section></main><footer class="site-footer band-footer"><div class="container band-footer__inner"><a href="/" class="band-footer__logo" aria-label="Roadhouse Rats home"><img src="/assets/images/roadhouse-rats-trans-white.webp" alt="" width="1000" height="1458" loading="lazy"></a><p class="band-footer__tagline">Classic rock covers band</p><nav class="band-footer__links" aria-label="Footer"><a href="/#gigs">Gigs</a><a href="/#book">Book us</a><a href="/#songs">Songs</a></nav><div class="band-footer__bottom"><p>© 2026 Roadhouse Rats</p><div class="band-footer__legal"><a href="/privacy/">Privacy and Cookies</a><button type="button" class="site-footer__consent" data-consent-open hidden>Cookie settings</button></div></div><p class="band-footer__trademark">The Roadhouse Rats logo is a registered trademark.</p></div></footer><script type="module" src="/js/main.js"></script></body></html>
