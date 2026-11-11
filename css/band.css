@@ -527,3 +527,17 @@ body {
 .band-page .prose strong {
   color: var(--color-ink-on-dark);
 }
+
+.band-form__status {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--color-body-on-dark);
+}
+
+.band-form__thanks {
+  margin: 0;
+  padding: var(--space-6);
+  border: 1px solid var(--color-eyebrow);
+  border-radius: var(--radius-sm);
+  color: var(--color-ink-on-dark);
+}

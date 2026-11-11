@@ -89,7 +89,7 @@ collections:
             widget: list
             field: { name: item, label: Item, widget: string }
           - { name: bookingFormTitle, label: "Booking form: heading", widget: string }
-          - { name: bookingFormAction, label: "Booking form: Formspree address", widget: string, required: false, hint: "e.g. https://formspree.io/f/abcdwxyz. Enquiries are emailed to whoever owns the Formspree form. Leave empty to hide the form." }
+          - { name: bookingFormKey, label: "Booking form: Web3Forms access key", widget: string, required: false, hint: "From web3forms.com. Enquiries are emailed to the address the key was created for; to change where they go, create a new key for the new address and paste it here. Leave empty and the form is hidden." }
           - name: eventTypes
             label: "Booking form: event types"
             label_singular: event type
