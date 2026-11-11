@@ -76,17 +76,6 @@ collections:
           - { name: showGigs, label: "Gigs: show this section", widget: boolean, default: true }
           - { name: gigsEyebrow, label: "Gigs: small label", widget: string }
           - { name: gigsTitle, label: "Gigs: heading", widget: string }
-          - name: gigs
-            label: "Gigs"
-            label_singular: gig
-            widget: list
-            summary: "{{date}}: {{venue}}"
-            hint: "Gigs sort themselves by date and drop off the website the day after they happen."
-            fields:
-              - { name: date, label: Date, widget: datetime, time_format: false, format: "YYYY-MM-DD" }
-              - { name: venue, label: Venue, widget: string, default: "The Dashwood Roadhouse" }
-              - { name: location, label: "Town or village", widget: string, default: "Piddington" }
-              - { name: time, label: "Start time", widget: string, default: "9:00 pm", required: false }
           - { name: gigsEmpty, label: "Gigs: message when there are none coming up", widget: string }
 
           - { name: showBooking, label: "Booking: show this section", widget: boolean, default: true }
@@ -132,11 +121,39 @@ collections:
           - { name: repertoireEyebrow, label: "Repertoire: small label", widget: string }
           - { name: repertoireTitle, label: "Repertoire: heading", widget: string }
           - { name: repertoireIntro, label: "Repertoire: intro", widget: text }
-          - name: songs
-            label: "Songs"
-            label_singular: song
-            widget: list
-            field: { name: song, label: Song, widget: string }
+
+  - name: gigs
+    label: Gigs
+    label_singular: Gig
+    icon: event
+    description: "Gigs sort themselves by date and drop off the website the day after they happen. The section's heading is on the Homepage."
+    folder: src/content/gigs
+    create: true
+    format: json
+    slug: "{{date}}-{{venue}}"
+    summary: "{{date}}: {{venue}}, {{location}}"
+    sortable_fields: { fields: [date, venue], default: { field: date, direction: ascending } }
+    editor: { preview: false }
+    fields:
+      - { name: date, label: Date, widget: datetime, time_format: false, format: "YYYY-MM-DD" }
+      - { name: venue, label: Venue, widget: string, default: "The Dashwood Roadhouse" }
+      - { name: location, label: "Town or village", widget: string, default: "Piddington" }
+      - { name: time, label: "Start time", widget: string, default: "9:00 pm", required: false }
+
+  - name: songs
+    label: Repertoire
+    label_singular: Song
+    icon: music_note
+    description: "Drag to reorder (Reorder button). The section's heading and intro are on the Homepage."
+    folder: src/content/songs
+    create: true
+    format: json
+    slug: "{{title}}"
+    identifier_field: title
+    reorder: true
+    editor: { preview: false }
+    fields:
+      - { name: title, label: Song, widget: string }
 
   - name: legal
     label: Legal
