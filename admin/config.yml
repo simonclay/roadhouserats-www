@@ -101,6 +101,7 @@ collections:
           - { name: videosTitle, label: "Videos: heading", widget: string }
           - name: videos
             label: "Videos"
+            required: false
             label_singular: video
             widget: list
             summary: "{{title}}"
@@ -110,6 +111,7 @@ collections:
           - { name: listenTitle, label: "Tracks: heading", widget: string }
           - name: tracks
             label: "Tracks"
+            required: false
             label_singular: track
             widget: list
             summary: "{{title}}"
