@@ -541,3 +541,30 @@ body {
   border-radius: var(--radius-sm);
   color: var(--color-ink-on-dark);
 }
+
+/* Video pop-up (built by js/modules/videos.js) */
+.band-modal {
+  width: min(64rem, 100% - 2 * var(--space-5));
+  max-width: none;
+  padding: 0;
+  border: 0;
+  overflow: visible;
+  background: transparent;
+}
+
+.band-modal::backdrop {
+  background: rgb(0 0 0 / 0.85);
+}
+
+.band-modal__close {
+  position: absolute;
+  inset: auto 0 calc(100% + var(--space-2)) auto;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-pink)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 6l12 12M18 6L6 18' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E")
+    center / 50% no-repeat;
+  cursor: pointer;
+}
