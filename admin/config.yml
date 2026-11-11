@@ -33,9 +33,15 @@ collections:
         label: Homepage
         file: src/content/pages/home.json
         fields:
-          - { name: seoTitle, label: "Search and sharing: page title", widget: string, hint: "Shown in the browser tab and as the blue link in Google. Keep it under 60 characters." }
-          - { name: metaDescription, label: "Search and sharing: description", widget: text, hint: "Shown under the title in Google. One or two sentences, under 160 characters." }
-          - { name: shareImage, label: "Search and sharing: share image", widget: image, required: false, hint: "Shown when the link is posted on Facebook, WhatsApp and so on. 1200 x 630 pixels works best." }
+          - name: seo
+            label: "Search and sharing"
+            widget: object
+            collapsed: true
+            summary: "{{title}}"
+            fields:
+              - { name: title, label: "Page title", widget: string, hint: "Shown in the browser tab and as the blue link in Google. Keep it under 60 characters." }
+              - { name: description, label: "Description", widget: text, hint: "Shown under the title in Google. One or two sentences, under 160 characters." }
+              - { name: image, label: "Share image", widget: image, required: false, hint: "Shown when the link is posted on Facebook, WhatsApp and so on. 1200 x 630 pixels works best." }
           - name: heroImages
             label: "Top of page: background photos"
             label_singular: photo
