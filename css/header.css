@@ -1,4 +1,4 @@
-/* Header: Gigs · logo · Songs, fixed over the top of the page. */
+/* Header: section links either side of the logo, fixed over the top of the page. */
 
 .band-header {
   position: fixed;
@@ -14,14 +14,36 @@
 }
 
 .band-nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-areas: 'left logo right';
   align-items: center;
-  justify-content: center;
-  gap: var(--space-12);
+  gap: var(--space-10);
   padding: var(--space-2) var(--section-padding-x);
 }
 
+.band-nav__logo {
+  grid-area: logo;
+}
+
+.band-nav__group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-8);
+}
+
+.band-nav__group--left {
+  grid-area: left;
+  justify-content: flex-end;
+}
+
+.band-nav__group--right {
+  grid-area: right;
+  justify-content: flex-start;
+}
+
 .band-nav__link {
+  white-space: nowrap;
   font-size: var(--text-xl-alt);
   font-weight: 500;
   letter-spacing: var(--tracking-wider);
@@ -49,12 +71,40 @@
   height: 4.5rem;
 }
 
-@media (max-width: 480px) {
+/* Tablets and phones: logo on top, all five links in one centred row
+   underneath (wrapping onto a second row on narrow phones). */
+@media (max-width: 1100px) {
   .band-nav {
-    gap: var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-1) var(--space-5);
+    padding-bottom: var(--space-3);
+  }
+
+  .band-nav__group {
+    display: contents;
+  }
+
+  .band-nav__logo {
+    display: flex;
+    justify-content: center;
+    flex-basis: 100%;
   }
 
   .band-nav__logo img {
-    height: 3.5rem;
+    height: 3.25rem;
+  }
+
+  .band-nav__link {
+    font-size: var(--text-md);
+    letter-spacing: var(--tracking-wide);
+  }
+}
+
+/* The header is taller here (two rows), so anchored sections stop lower. */
+@media (max-width: 1100px) {
+  section[id] {
+    scroll-margin-top: 7rem;
   }
 }
