@@ -1,4 +1,4 @@
-/* Header: section links either side of the logo, fixed over the top of the page. */
+/* Header: the section links, centred and fixed over the top of the page. */
 
 .band-header {
   position: fixed;
@@ -13,21 +13,13 @@
   border-bottom: 1px solid var(--border-dark-soft);
 }
 
-/* Logo on the left, the section links in a row on the right. */
+/* The section links in one centred row. */
 .band-nav {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: var(--space-10);
-  padding: var(--space-2) var(--section-padding-x);
-}
-
-.band-nav__group {
-  display: contents;
-}
-
-.band-nav__logo {
-  margin-right: auto;
+  gap: var(--space-3) var(--space-10);
+  padding: var(--space-5) var(--section-padding-x);
 }
 
 .band-nav__link {
@@ -54,42 +46,15 @@
   color: var(--color-white);
 }
 
-.band-nav__logo img {
-  width: auto;
-  height: 4.5rem;
-}
-
-/* Tablets and phones: logo on top, all five links in one centred row
-   underneath (wrapping onto a second row on narrow phones). */
-@media (max-width: 1100px) {
+/* Phones: smaller, and wrapping onto a second row. */
+@media (max-width: 640px) {
   .band-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     gap: var(--space-1) var(--space-5);
-    padding-bottom: var(--space-3);
-  }
-
-  .band-nav__logo {
-    margin-right: 0;
-    display: flex;
-    justify-content: center;
-    flex-basis: 100%;
-  }
-
-  .band-nav__logo img {
-    height: 3.25rem;
+    padding-block: var(--space-3);
   }
 
   .band-nav__link {
     font-size: var(--text-md);
     letter-spacing: var(--tracking-wide);
-  }
-}
-
-/* The header is taller here (two rows), so anchored sections stop lower. */
-@media (max-width: 1100px) {
-  section[id] {
-    scroll-margin-top: 7rem;
   }
 }
