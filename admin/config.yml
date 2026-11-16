@@ -78,24 +78,6 @@ collections:
           - { name: gigsTitle, label: "Gigs: heading", widget: string }
           - { name: gigsEmpty, label: "Gigs: message when there are none coming up", widget: string }
 
-          - { name: showBooking, label: "Booking: show this section", widget: boolean, default: true }
-          - { name: bookingTitle, label: "Booking: heading", widget: string }
-          - { name: bookingImage, label: "Booking: photo", widget: image, required: false }
-          - { name: bookingIntro, label: "Booking: intro", widget: text }
-          - { name: bookingListIntro, label: "Booking: line above the list", widget: string }
-          - name: bookingList
-            label: "Booking: what we bring"
-            label_singular: item
-            widget: list
-            field: { name: item, label: Item, widget: string }
-          - { name: bookingFormTitle, label: "Booking form: heading", widget: string }
-          - { name: bookingFormKey, label: "Booking form: Web3Forms access key", widget: string, required: false, hint: "From web3forms.com. Enquiries are emailed to the address the key was created for; to change where they go, create a new key for the new address and paste it here. Leave empty and the form is hidden." }
-          - name: eventTypes
-            label: "Booking form: event types"
-            label_singular: event type
-            widget: list
-            field: { name: type, label: "Event type", widget: string }
-
           - { name: showMedia, label: "Video & Music: show this section", widget: boolean, default: true, hint: "The section also stays hidden until it has at least one video or track." }
           - { name: mediaTitle, label: "Video & Music: heading", widget: string }
           - { name: videosTitle, label: "Videos: heading", widget: string }
@@ -123,6 +105,24 @@ collections:
           - { name: repertoireEyebrow, label: "Repertoire: small label", widget: string }
           - { name: repertoireTitle, label: "Repertoire: heading", widget: string }
           - { name: repertoireIntro, label: "Repertoire: intro", widget: text }
+
+          - { name: showBooking, label: "Booking: show this section", widget: boolean, default: true }
+          - { name: bookingTitle, label: "Booking: heading", widget: string }
+          - { name: bookingImage, label: "Booking: photo", widget: image, required: false }
+          - { name: bookingIntro, label: "Booking: intro", widget: text }
+          - { name: bookingListIntro, label: "Booking: line above the list", widget: string }
+          - name: bookingList
+            label: "Booking: what we bring"
+            label_singular: item
+            widget: list
+            field: { name: item, label: Item, widget: string }
+          - { name: bookingFormTitle, label: "Booking form: heading", widget: string }
+          - { name: bookingFormKey, label: "Booking form: Web3Forms access key", widget: string, required: false, hint: "From web3forms.com. Enquiries are emailed to the address the key was created for; to change where they go, create a new key for the new address and paste it here. Leave empty and the form is hidden." }
+          - name: eventTypes
+            label: "Booking form: event types"
+            label_singular: event type
+            widget: list
+            field: { name: type, label: "Event type", widget: string }
 
   - name: gigs
     label: Gigs
