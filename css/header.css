@@ -13,8 +13,7 @@
   border-bottom: 1px solid var(--border-dark-soft);
 }
 
-/* Links and logo in one centred row with equal gaps, so two links on the
-   left and three on the right still look balanced. */
+/* Logo on the left, the section links in a row on the right. */
 .band-nav {
   display: flex;
   align-items: center;
@@ -27,10 +26,8 @@
   display: contents;
 }
 
-/* The logo comes first in the HTML (it heads the phone layout); on wider
-   screens the left-hand links move in front of it. */
-.band-nav__group--left > * {
-  order: -1;
+.band-nav__logo {
+  margin-right: auto;
 }
 
 .band-nav__link {
@@ -73,11 +70,8 @@
     padding-bottom: var(--space-3);
   }
 
-  .band-nav__group--left > * {
-    order: 0;
-  }
-
   .band-nav__logo {
+    margin-right: 0;
     display: flex;
     justify-content: center;
     flex-basis: 100%;
