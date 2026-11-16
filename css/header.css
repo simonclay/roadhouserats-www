@@ -13,33 +13,24 @@
   border-bottom: 1px solid var(--border-dark-soft);
 }
 
+/* Links and logo in one centred row with equal gaps, so two links on the
+   left and three on the right still look balanced. */
 .band-nav {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  grid-template-areas: 'left logo right';
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-10);
   padding: var(--space-2) var(--section-padding-x);
 }
 
-.band-nav__logo {
-  grid-area: logo;
-}
-
 .band-nav__group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3) var(--space-8);
+  display: contents;
 }
 
-.band-nav__group--left {
-  grid-area: left;
-  justify-content: flex-end;
-}
-
-.band-nav__group--right {
-  grid-area: right;
-  justify-content: flex-start;
+/* The logo comes first in the HTML (it heads the phone layout); on wider
+   screens the left-hand links move in front of it. */
+.band-nav__group--left > * {
+  order: -1;
 }
 
 .band-nav__link {
@@ -82,8 +73,8 @@
     padding-bottom: var(--space-3);
   }
 
-  .band-nav__group {
-    display: contents;
+  .band-nav__group--left > * {
+    order: 0;
   }
 
   .band-nav__logo {
